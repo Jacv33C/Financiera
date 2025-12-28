@@ -1,38 +1,129 @@
-.App {
-  text-align: center;
+/* ===== RESET & BASE ===== */
+* {
+  box-sizing: border-box;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+body {
+  margin: 0;
+  background: linear-gradient(180deg, #072146, #0d47a1);
+  font-family: "Segoe UI", Roboto, Arial, sans-serif;
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+/* ===== CONTENEDOR PRINCIPAL ===== */
+.app {
+  max-width: 900px;
+  margin: auto;
+  padding: 30px 20px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* ===== HEADER ===== */
+header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+header h1 {
+  font-size: 40px;
+  font-weight: 700;
+  margin: 0;
+  letter-spacing: 1px;
+}
+
+header h3 {
+  margin-top: 8px;
+  font-weight: 400;
+  color: #b3d4fc;
+}
+
+/* ===== TARJETAS / SECCIONES ===== */
+section {
+  background-color: #0b2f6b;
+  border-radius: 16px;
+  padding: 25px;
+  margin-bottom: 25px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+}
+
+/* ===== TITULOS ===== */
+section h2 {
+  font-size: 22px;
+  margin-bottom: 15px;
+  border-left: 5px solid #00bcd4;
+  padding-left: 12px;
+}
+
+/* ===== TEXTO ===== */
+p {
+  line-height: 1.6;
+  color: #e3f2fd;
+}
+
+/* ===== SERVICIOS ===== */
+ul {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 5px;
+}
+
+ul li {
+  background: white;
+  color: #072146;
+  padding: 18px;
+  border-radius: 14px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* ===== FORMULARIO ===== */
+form {
+  display: grid;
+  gap: 5px;
+}
+
+form input,
+form select,
+form textarea {
+  padding: 14px;
+  border-radius: 12px;
+  border: none;
+  outline: none;
+  font-size: 15px;
+}
+
+form textarea {
+  resize: none;
+  height: 100px;
+}
+
+/* ===== BOTÓN BBVA STYLE ===== */
+button {
+  background: linear-gradient(90deg, #00bcd4, #0097a7);
+  color: white;
+  padding: 14px;
+  border-radius: 30px;
+  border: none;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.35);
+}
+
+/* ===== FOOTER ===== */
+footer {
+  margin-top: 40px;
+  text-align: center;
+  font-size: 13px;
+  color: #bbdefb;
+  opacity: 0.9;
 }
