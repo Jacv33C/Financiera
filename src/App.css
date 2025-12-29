@@ -60,25 +60,30 @@ p {
 }
 
 /* ===== SERVICIOS ===== */
-ul {
+.servicios ul {
   list-style: none;
   padding: 0;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 5px;
+  margin: 0;
 }
 
-ul li {
+.servicios li {
   background: white;
   color: #072146;
-  padding: 18px;
+  padding: 20px;
+  margin-bottom: 12px;
   border-radius: 14px;
   font-weight: 600;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+  border-left: 6px solid #000; /* 👈 LÍNEA NEGRA */
   display: flex;
   align-items: center;
-  justify-content: center;
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
 }
+.servicios li:hover {
+  transform: translateX(4px);
+  transition: 0.2s ease;
+}
+
+
 
 /* ===== FORMULARIO ===== */
 form {

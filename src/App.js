@@ -1,76 +1,123 @@
-
-import './App.css';
+import React, { useState } from "react";
+import "./App.css";
 
 function App() {
-  const empresa = {
-    nombre: "CONSULTORES MX",
-    nombreCorto: "CONSUL",
-    giro: "Consultoría financiera"
-  };
+  const NUMERO_WSP = "529811016234"; // 🔴 TU NÚMERO CON LADA 52
 
-  const presentacion = "Somos una consultoría financiera conformada por expertos asesores que te ayudaremos a solucionar tus adeudos con BBVA, obteniendo grandes beneficios.";
+  const [nombre, setNombre] = useState("");
+  const [municipio, setMunicipio] = useState("");
+  const [deuda, setDeuda] = useState(100000);
 
-  const servicios = [
-    "Quitas totales",
-    "Quitas a plazo",
-    "Cartas de no adeudo",
-    "Recuperación de buró de crédito"
-  ];
+  function enviarWhatsApp(e) {
+    e.preventDefault();
+
+    if (!nombre || !municipio) {
+      alert("Por favor llena todos los campos");
+      return;
+    }
+
+    const mensaje = `Hola, quiero una asesoría financiera.
+
+Nombre: ${nombre}
+Municipio: ${municipio}
+Deuda aproximada: $${deuda.toLocaleString()} MXN`;
+
+    const url = `https://wa.me/${NUMERO_WSP}?text=${encodeURIComponent(mensaje)}`;
+    window.open(url, "_blank");
+  }
 
   return (
-    <div style={{ fontFamily: "Arial", padding: "20px" }}>
-      
-      {/* ENCABEZADO */}
+    <div className="app">
+      {/* HEADER */}
       <header>
-        <h1>{empresa.nombre}</h1>
-        <h3>{empresa.giro}</h3>
+        <h1>CONSULTORES MX</h1>
+        <h3>Consultoría financiera</h3>
       </header>
 
       {/* PRESENTACIÓN */}
-      <section>
-        <p>{presentacion}</p>
+      <section className="presentacion">
+        <p>
+          Somos una <strong>consultoría financiera especializada</strong>, conformada por
+          expertos asesores que <strong>negocian directamente con BBVA por ti</strong> para
+          ayudarte a <strong>liquidar tus adeudos</strong> de forma legal y segura.
+          <br /><br />
+          Nuestro objetivo es que recuperes tu tranquilidad financiera obteniendo
+          <strong> descuentos exclusivos</strong> y la posibilidad de
+          <strong> liquidar hasta con solo el 30% del total de tu deuda</strong>.
+        </p>
       </section>
 
       {/* SERVICIOS */}
-      <section>
+      <section className="servicios">
         <h2>Servicios</h2>
         <ul>
-          {servicios.map((servicio, index) => (
-            <li key={index}>✅ {servicio}</li>
-          ))}
+          <li>✅ Quitas totales</li>
+          <li>✅ Quitas a plazo</li>
+          <li>✅ Cartas de no adeudo</li>
+          <li>✅ Recuperación de Buró de crédito</li>
         </ul>
       </section>
 
       {/* FORMULARIO */}
-      <section>
-        <h2>Solicita asesoría</h2>
+      <section className="formulario">
+        <h2>Solicita tu asesoría</h2>
 
-        <form>
-          <input type="text" placeholder="Nombre completo" /><br /><br />
-          <input type="tel" placeholder="Teléfono" /><br /><br />
-          <input type="email" placeholder="Correo electrónico" /><br /><br />
+        <form onSubmit={enviarWhatsApp}>
+          <input
+            type="text"
+            placeholder="Nombre completo"
+            value={nombre}
+            onChange={(e) => setNombre(e.target.value)}
+          />
 
-          <select>
-            <option>Selecciona tu situación</option>
-            <option>Adeudo con BBVA</option>
-            <option>Buró de crédito</option>
-            <option>Otro</option>
-          </select><br /><br />
+          <select
+            value={municipio}
+            onChange={(e) => setMunicipio(e.target.value)}
+          >
+            <option value="">Selecciona tu municipio</option>
+            <option value="Campeche">Campeche</option>
+            <option value="Carmen">Carmen</option>
+            <option value="Champotón">Champotón</option>
+            <option value="Calkiní">Calkiní</option>
+            <option value="Hecelchakán">Hecelchakán</option>
+            <option value="Hopelchén">Hopelchén</option>
+            <option value="Palizada">Palizada</option>
+            <option value="Tenabo">Tenabo</option>
+            <option value="Escárcega">Escárcega</option>
+            <option value="Calakmul">Calakmul</option>
+            <option value="Candelaria">Candelaria</option>
+            <option value="Seybaplaya">Seybaplaya</option>
+            <option value="Dzitbalché">Dzitbalché</option>
+          </select>
 
-          <textarea placeholder="Describe tu caso"></textarea><br /><br />
+          <label className="label-deuda">
+            Monto aproximado de la deuda
+          </label>
 
-          <button type="button">Enviar</button>
+          <p className="monto">
+            ${deuda.toLocaleString()} MXN
+          </p>
+
+          <input
+            type="range"
+            min="100000"
+            max="1500000"
+            step="50000"
+            value={deuda}
+            onChange={(e) => setDeuda(Number(e.target.value))}
+          />
+
+          <button type="submit">
+            Solicitar asesoría
+          </button>
         </form>
       </section>
 
-      {/* PIE DE PÁGINA */}
-      <footer style={{ marginTop: "30px", fontSize: "12px" }}>
-        <p>© 2025 {empresa.nombreCorto} - Todos los derechos reservados</p>
+      <footer>
+        © 2025 CONSUL – Todos los derechos reservados
       </footer>
-
     </div>
   );
 }
 
 export default App;
-
