@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./App.css";
 
 function App() {
-  const NUMERO_WSP = "529811016234"; // 🔴 TU NÚMERO CON LADA 52
+  const NUMERO_WSP = "529811646797"; 
 
   const [nombre, setNombre] = useState("");
   const [municipio, setMunicipio] = useState("");
