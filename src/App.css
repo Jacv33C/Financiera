@@ -1,134 +1,245 @@
-/* ===== RESET & BASE ===== */
+/* ===== RESET ===== */
 * {
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
+/* ===== PALETA BBVA ===== */
+:root {
+  --bbva-dark: #072146;
+  --bbva-main: #004481;
+  --bbva-accent: #2dcccd;
+  --bbva-border: rgba(0, 68, 129, 0.15);
+}
+
+/* ===== BODY ===== */
 body {
-  margin: 0;
-  background: linear-gradient(180deg, #072146, #0d47a1);
   font-family: "Segoe UI", Roboto, Arial, sans-serif;
+  background: radial-gradient(circle at top, #0b3c7d, #072146 70%);
   color: white;
 }
 
-/* ===== CONTENEDOR PRINCIPAL ===== */
+/* ===== APP ===== */
 .app {
-  max-width: 900px;
+  max-width: 1200px;
   margin: auto;
-  padding: 30px 20px;
+  padding: 40px 20px;
 }
 
 /* ===== HEADER ===== */
 header {
   text-align: center;
-  margin-bottom: 40px;
+  margin-bottom: 60px;
 }
 
 header h1 {
-  font-size: 40px;
-  font-weight: 700;
-  margin: 0;
-  letter-spacing: 1px;
+  font-size: 42px;
+  margin-bottom: 10px;
 }
 
 header h3 {
-  margin-top: 8px;
   font-weight: 400;
-  color: #b3d4fc;
+  opacity: 0.9;
 }
 
-/* ===== TARJETAS / SECCIONES ===== */
-section {
-  background-color: #0b2f6b;
-  border-radius: 16px;
-  padding: 25px;
-  margin-bottom: 25px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+/* ===== PRESENTACIÓN ===== */
+.presentacion {
+  background: linear-gradient(
+    135deg,
+    rgba(255,255,255,0.18),
+    rgba(255,255,255,0.06)
+  );
+  padding: 35px;
+  border-radius: 20px;
+  line-height: 1.7;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+  margin-bottom: 90px;
 }
 
-/* ===== TITULOS ===== */
-section h2 {
-  font-size: 22px;
-  margin-bottom: 15px;
-  border-left: 5px solid #00bcd4;
-  padding-left: 12px;
+/* ================= CARRUSEL (FIX DEFINITIVO) ================= */
+
+.carousel {
+  position: relative;
+  margin-bottom: 120px;
 }
 
-/* ===== TEXTO ===== */
-p {
-  line-height: 1.6;
-  color: #e3f2fd;
-}
-
-/* ===== SERVICIOS ===== */
-.servicios ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.servicios li {
-  background: white;
-  color: #072146;
-  padding: 20px;
-  margin-bottom: 12px;
-  border-radius: 14px;
-  font-weight: 600;
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
-  border-left: 6px solid #000; /* 👈 LÍNEA NEGRA */
+.carousel-track {
+  position: relative;
+  max-width: 1000px;
+  margin: auto;
+  height: 420px;
   display: flex;
   align-items: center;
-}
-.servicios li:hover {
-  transform: translateX(4px);
-  transition: 0.2s ease;
+  justify-content: center;
+  overflow: hidden;
 }
 
+/* Slides */
+.slide {
+  position: absolute;
+  width: 260px;
+  height: 320px;
+  object-fit: cover;
+  border-radius: 18px;
+  box-shadow: 0 30px 60px rgba(0,0,0,0.45);
+  opacity: 0;
+  z-index: 1;
+  transition:
+    transform 0.55s cubic-bezier(.22,.61,.36,1),
+    opacity 0.55s;
+}
 
+/* Centro */
+.slide.active {
+  transform: translateX(0) scale(1.15);
+  opacity: 1;
+  z-index: 5;
+}
+
+/* Izquierda */
+.slide.left {
+  transform: translateX(-340px) scale(0.85);
+  opacity: 0.55;
+  z-index: 2;
+}
+
+/* Derecha */
+.slide.right {
+  transform: translateX(340px) scale(0.85);
+  opacity: 0.55;
+  z-index: 2;
+}
+
+/* Flechas */
+.arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255,255,255,0.18);
+  border: none;
+  color: white;
+  font-size: 42px;
+  padding: 14px 20px;
+  cursor: pointer;
+  border-radius: 50%;
+  z-index: 10;
+}
+
+.arrow.left { left: 10px; }
+.arrow.right { right: 10px; }
+
+/* ===== SERVICIOS ===== */
+.servicios {
+  margin-bottom: 120px;
+}
+
+.servicios h2 {
+  font-size: 34px;
+  margin-bottom: 40px;
+}
+
+.servicios-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 30px;
+}
+
+.servicio-card {
+  background: rgba(255,255,255,0.12);
+  padding: 35px;
+  border-radius: 22px;
+  box-shadow: 0 30px 60px rgba(0,0,0,0.35);
+  transition: transform 0.35s ease;
+}
+
+.servicio-card:hover {
+  transform: translateY(-8px);
+}
+
+.servicio-card .icon {
+  font-size: 34px;
+  color: var(--bbva-accent);
+  margin-bottom: 15px;
+}
+
+.servicio-card h4 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.servicio-card p {
+  font-size: 15px;
+  opacity: 0.9;
+}
 
 /* ===== FORMULARIO ===== */
-form {
-  display: grid;
-  gap: 5px;
+.formulario {
+  background: white;
+  color: #1b1b1b;
+  padding: 45px;
+  border-radius: 24px;
+  box-shadow: 0 30px 60px rgba(0,0,0,0.35);
 }
 
-form input,
-form select,
-form textarea {
+.formulario h2 {
+  color: var(--bbva-main);
+  margin-bottom: 25px;
+}
+
+/* Inputs */
+input,
+select {
+  width: 100%;
+  margin: 15px 0;
   padding: 14px;
-  border-radius: 12px;
-  border: none;
-  outline: none;
-  font-size: 15px;
+  border-radius: 10px;
+  border: 1px solid var(--bbva-border);
 }
 
-form textarea {
-  resize: none;
-  height: 100px;
-}
-
-/* ===== BOTÓN BBVA STYLE ===== */
+/* Botón */
 button {
-  background: linear-gradient(90deg, #00bcd4, #0097a7);
-  color: white;
-  padding: 14px;
-  border-radius: 30px;
+  margin-top: 20px;
+  padding: 16px;
+  background: linear-gradient(135deg, #004481, #0b63ce);
   border: none;
-  font-size: 16px;
-  font-weight: bold;
+  border-radius: 14px;
+  color: white;
+  font-size: 17px;
   cursor: pointer;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.35);
 }
 
 /* ===== FOOTER ===== */
 footer {
-  margin-top: 40px;
+  margin-top: 80px;
   text-align: center;
-  font-size: 13px;
-  color: #bbdefb;
-  opacity: 0.9;
+  opacity: 0.85;
+}
+
+/* ===== MOBILE ===== */
+@media (max-width: 768px) {
+  header h1 {
+    font-size: 34px;
+  }
+
+  .carousel-track {
+    height: 260px;
+  }
+
+  .slide {
+    width: 85%;
+    height: 220px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .slide.left,
+  .slide.right {
+    display: none;
+  }
+
+  .arrow {
+    font-size: 34px;
+    padding: 10px 16px;
+  }
 }

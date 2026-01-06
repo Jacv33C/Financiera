@@ -2,11 +2,29 @@ import React, { useState } from "react";
 import "./App.css";
 
 function App() {
-  const NUMERO_WSP = "529811646797"; 
+  const NUMERO_WSP = "529817513404";
 
   const [nombre, setNombre] = useState("");
   const [municipio, setMunicipio] = useState("");
   const [deuda, setDeuda] = useState(100000);
+
+  /* ===== IMÁGENES ===== */
+  const imagenes = [
+    "/img/Imagen1.jpeg",
+    "/img/Imagen2.jpeg",
+    "/img/Imagen3.jpeg",
+    "/img/Imagen4.jpeg",
+  ];
+
+  const [indice, setIndice] = useState(1);
+
+  const anterior = () => {
+    setIndice((prev) => (prev === 0 ? imagenes.length - 1 : prev - 1));
+  };
+
+  const siguiente = () => {
+    setIndice((prev) => (prev === imagenes.length - 1 ? 0 : prev + 1));
+  };
 
   function enviarWhatsApp(e) {
     e.preventDefault();
@@ -16,47 +34,98 @@ function App() {
       return;
     }
 
-    const mensaje = `Hola, quiero una asesoría financiera.
+    const mensaje = `Hola,me interesa negociar mi adeudo con BBVA
 
 Nombre: ${nombre}
 Municipio: ${municipio}
 Deuda aproximada: $${deuda.toLocaleString()} MXN`;
 
-    const url = `https://wa.me/${NUMERO_WSP}?text=${encodeURIComponent(mensaje)}`;
-    window.open(url, "_blank");
+    window.open(
+      `https://wa.me/${NUMERO_WSP}?text=${encodeURIComponent(mensaje)}`,
+      "_blank"
+    );
   }
 
   return (
     <div className="app">
-      {/* HEADER */}
       <header>
         <h1>CONSULTORES MX</h1>
         <h3>Consultoría financiera</h3>
       </header>
 
-      {/* PRESENTACIÓN */}
       <section className="presentacion">
         <p>
-          Somos una <strong>consultoría financiera especializada</strong>, conformada por
-          expertos asesores que <strong>negocian directamente con BBVA por ti</strong> para
-          ayudarte a <strong>liquidar tus adeudos</strong> de forma legal y segura.
-          <br /><br />
-          Nuestro objetivo es que recuperes tu tranquilidad financiera obteniendo
-          <strong> descuentos exclusivos</strong> y la posibilidad de
-          <strong> liquidar hasta con solo el 30% del total de tu deuda</strong>.
+         Somos una <strong>consultoría financiera especializada</strong> integrada por
+  <strong> asesores profesionales</strong> que gestionan <strong> negociaciones directas con BBVA </strong>
+  para apoyar a nuestros clientes en la <strong>liquidación legal y segura de sus adeudos</strong>.
+  
+  Nuestro objetivo es brindarte <strong>soluciones financieras efectivas</strong>,
+  permitiéndote acceder a <strong>descuentos preferenciales</strong> y a esquemas de
+  pago que pueden <strong>reducir tu deuda hasta en un 70%</strong>.
         </p>
       </section>
 
-      {/* SERVICIOS */}
-      <section className="servicios">
-        <h2>Servicios</h2>
-        <ul>
-          <li>✅ Quitas totales</li>
-          <li>✅ Quitas a plazo</li>
-          <li>✅ Cartas de no adeudo</li>
-          <li>✅ Recuperación de Buró de crédito</li>
-        </ul>
-      </section>
+    {/* ===== CARRUSEL LATERAL REAL ===== */}
+<section className="carousel">
+  <button className="arrow left" onClick={anterior}>‹</button>
+
+  <div className="carousel-track">
+    {imagenes.map((img, i) => {
+      const offset = i - indice;
+
+      return (
+        <img
+          key={i}
+          src={img}
+          alt="banner"
+          className={`slide ${offset === 0 ? "active" : ""}`}
+        style={{
+  transform:
+    window.innerWidth > 768
+      ? `translateX(${offset * 260}px) scale(${offset === 0 ? 1.2 : 0.9})`
+      : "translateX(-50%) scale(1)",
+  opacity: offset === 0 ? 1 : 0.5,
+  zIndex: offset === 0 ? 2 : 1
+}}
+
+        />
+      );
+    })}
+  </div>
+
+  <button className="arrow right" onClick={siguiente}>›</button>
+</section>
+
+     <section class="servicios">
+  <h2>Servicios</h2>
+
+  <div class="servicios-grid">
+    <div class="servicio-card">
+      <span class="icon">✔</span>
+      <h4>Quitas totales</h4>
+      <p>Liquidación definitiva de tu deuda con descuentos reales.</p>
+    </div>
+
+    <div class="servicio-card">
+      <span class="icon">⏳</span>
+      <h4>Quitas a plazo</h4>
+      <p>Planes flexibles adaptados a tu capacidad de pago.</p>
+    </div>
+
+    <div class="servicio-card">
+      <span class="icon">📄</span>
+      <h4>Carta de no adeudo</h4>
+      <p>Documento legal que respalda tu tranquilidad financiera.</p>
+    </div>
+
+    <div class="servicio-card">
+      <span class="icon">📈</span>
+      <h4>Recuperación de Buró</h4>
+      <p>Mejora progresiva de tu historial crediticio.</p>
+    </div>
+  </div>
+</section>
+
 
       {/* FORMULARIO */}
       <section className="formulario">
@@ -70,33 +139,13 @@ Deuda aproximada: $${deuda.toLocaleString()} MXN`;
             onChange={(e) => setNombre(e.target.value)}
           />
 
-          <select
-            value={municipio}
-            onChange={(e) => setMunicipio(e.target.value)}
-          >
+          <select value={municipio} onChange={(e) => setMunicipio(e.target.value)}>
             <option value="">Selecciona tu municipio</option>
             <option value="Campeche">Campeche</option>
             <option value="Carmen">Carmen</option>
-            <option value="Champotón">Champotón</option>
-            <option value="Calkiní">Calkiní</option>
-            <option value="Hecelchakán">Hecelchakán</option>
-            <option value="Hopelchén">Hopelchén</option>
-            <option value="Palizada">Palizada</option>
-            <option value="Tenabo">Tenabo</option>
-            <option value="Escárcega">Escárcega</option>
-            <option value="Calakmul">Calakmul</option>
-            <option value="Candelaria">Candelaria</option>
-            <option value="Seybaplaya">Seybaplaya</option>
-            <option value="Dzitbalché">Dzitbalché</option>
           </select>
 
-          <label className="label-deuda">
-            Monto aproximado de la deuda
-          </label>
-
-          <p className="monto">
-            ${deuda.toLocaleString()} MXN
-          </p>
+          <p>${deuda.toLocaleString()} MXN</p>
 
           <input
             type="range"
@@ -107,15 +156,11 @@ Deuda aproximada: $${deuda.toLocaleString()} MXN`;
             onChange={(e) => setDeuda(Number(e.target.value))}
           />
 
-          <button type="submit">
-            Solicitar asesoría
-          </button>
+          <button type="submit">Solicitar asesoría</button>
         </form>
       </section>
 
-      <footer>
-        © 2025 CONSUL – Todos los derechos reservados
-      </footer>
+      <footer>© 2025 CONSUL</footer>
     </div>
   );
 }
