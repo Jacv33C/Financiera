@@ -10,10 +10,10 @@ function App() {
 
   /* ===== IMÁGENES ===== */
   const imagenes = [
-    "/img/Imagen1.jpeg",
-    "/img/Imagen2.jpeg",
-    "/img/Imagen3.jpeg",
-    "/img/Imagen4.jpeg",
+    "/img/Enero1.jpeg",
+    "/img/Enero2.jpeg",
+    "/img/Enero3.jpeg",
+    "/img/Enero4.jpeg",
   ];
 
   const [indice, setIndice] = useState(1);
@@ -142,16 +142,20 @@ Deuda aproximada: $${deuda.toLocaleString()} MXN`;
           <select value={municipio} onChange={(e) => setMunicipio(e.target.value)}>
             <option value="">Selecciona tu municipio</option>
             <option value="Campeche">Campeche</option>
-            <option value="Carmen">Carmen</option>
+            <option value="Calkini">Calkini</option>
+            <option value="Tenabo">Tenabo</option>
+            <option value="Pomuch">Pomuch</option>
+            <option value="Champoton">Champoton</option>
+            <option value="Hopelchen">Hopelchen</option>
           </select>
 
           <p>${deuda.toLocaleString()} MXN</p>
 
           <input
             type="range"
-            min="100000"
-            max="1500000"
-            step="50000"
+            min="5000"
+            max="500000"
+            step="5000"
             value={deuda}
             onChange={(e) => setDeuda(Number(e.target.value))}
           />
