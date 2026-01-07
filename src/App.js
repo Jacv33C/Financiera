@@ -6,7 +6,7 @@ function App() {
 
   const [nombre, setNombre] = useState("");
   const [municipio, setMunicipio] = useState("");
-  const [deuda, setDeuda] = useState(100000);
+  const [deuda, setDeuda] = useState(5000);
 
   /* ===== IMÁGENES ===== */
   const imagenes = [
@@ -51,6 +51,7 @@ Deuda aproximada: $${deuda.toLocaleString()} MXN`;
       <header>
         <h1>CONSULTORES MX</h1>
         <h3>Consultoría financiera</h3>
+       
       </header>
 
       <section className="presentacion">
@@ -69,31 +70,75 @@ Deuda aproximada: $${deuda.toLocaleString()} MXN`;
 <section className="carousel">
   <button className="arrow left" onClick={anterior}>‹</button>
 
-  <div className="carousel-track">
-    {imagenes.map((img, i) => {
-      const offset = i - indice;
+ <div className="carousel-track">
+  {imagenes.map((img, i) => {
+    const offset = i - indice;
 
-      return (
-        <img
-          key={i}
-          src={img}
-          alt="banner"
-          className={`slide ${offset === 0 ? "active" : ""}`}
+    return (
+      <img
+        key={i}
+        src={img}
+        alt="banner"
+        className="slide"
         style={{
-  transform:
-    window.innerWidth > 768
-      ? `translateX(${offset * 260}px) scale(${offset === 0 ? 1.2 : 0.9})`
-      : "translateX(-50%) scale(1)",
-  opacity: offset === 0 ? 1 : 0.5,
-  zIndex: offset === 0 ? 2 : 1
-}}
+          transform: `translateX(${offset * 280}px) scale(${offset === 0 ? 1.2 : 0.9})`,
+          opacity: offset === 0 ? 1 : 0.45,
+          zIndex: offset === 0 ? 3 : 1,
+          filter: offset === 0 ? "none" : "blur(1px)"
+        }}
+      />
+    );
+  })}
+</div>
 
-        />
-      );
-    })}
-  </div>
+
+
+
 
   <button className="arrow right" onClick={siguiente}>›</button>
+</section>
+
+{/* ===== CÓMO FUNCIONA ===== */}
+<section className="como-funciona">
+  <h2>¿Cómo funciona nuestro programa?</h2>
+
+  <div className="pasos-grid">
+    <div className="paso-card">
+      <div className="paso-icon">⚙️</div>
+      <h4>Diagnóstico personalizado</h4>
+      <p>
+        Realizamos un diagnóstico de cada caso para determinar la mejor
+        estrategia de negociación.
+      </p>
+    </div>
+
+    <div className="paso-card">
+      <div className="paso-icon">🧠</div>
+      <h4>Plan según tu capacidad</h4>
+      <p>
+        Diseñamos un plan de pago basado en la capacidad financiera real
+        del deudor.
+      </p>
+    </div>
+
+    <div className="paso-card">
+      <div className="paso-icon">📊</div>
+      <h4>Negociación con acreedores</h4>
+      <p>
+        Negociamos con todos los acreedores hasta conseguir el mejor
+        descuento posible.
+      </p>
+    </div>
+
+    <div className="paso-card">
+      <div className="paso-icon">👨‍👩‍👧</div>
+      <h4>Liquidación y tranquilidad</h4>
+      <p>
+        Una vez logrado el mejor descuento, renegociamos y liquidamos
+        la deuda para tu tranquilidad.
+      </p>
+    </div>
+  </div>
 </section>
 
      <section class="servicios">
@@ -125,6 +170,11 @@ Deuda aproximada: $${deuda.toLocaleString()} MXN`;
     </div>
   </div>
 </section>
+
+{/* FRASE DE IMPACTO */}
+<div className="frase-impacto">
+  <p>“Deuda cerrada, calma asegurada.”</p>
+</div>
 
 
       {/* FORMULARIO */}
